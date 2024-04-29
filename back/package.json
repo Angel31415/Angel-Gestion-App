@@ -1,0 +1,23 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "Proyecto sencillo construido en jason-server para el consumo de informacion de un front con react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "json":"json-server index.json"
+  },
+  "keywords": [
+    "Node",
+    "Js",
+    "React",
+    "json-server",
+    "JavaScript",
+    "API"
+  ],
+  "author": "Angel Rodriguez",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-alpha.23"
+  }
+}
