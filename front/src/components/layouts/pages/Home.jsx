@@ -1,7 +1,7 @@
 import Header from "../../helpers/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
-let urlUsuarios = "http://localhost:3000/user"; 
+let urlUsuarios = "http://localhost:3010/user"
 
 const Home = () => {
   const [usuarios,setUsuarios] = useState([])  
