@@ -15,7 +15,6 @@ const Home = () => {
   }, []);
 
   
-
   return (
     <div>
         <Header />
@@ -27,7 +26,7 @@ const Home = () => {
               <p>ID: {usuario.id}</p>  
               <section>
                 <button>Editar</button>
-                <button>Eliminar</button>
+                <button onClick={() => eliminarUsuario()} >Eliminar</button>
               </section>
             </section>
           ))}
