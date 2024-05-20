@@ -18,13 +18,13 @@ const Home = () => {
   
   function eliminarUsuario(id, user) {
     Swal.fire({
-      title: "Estas Seguro?",
+      title: "Estas Seguro de que desea eliminar el Usuario? " + user,
       text: "Tu no podras revertir esto!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sí,Eliminar"
+      confirmButtonText: "Sí, Eliminar"
     }).then((result) => {
       if (result.isConfirmed) {
         confirmar(id)
@@ -39,6 +39,7 @@ const Home = () => {
 
   async function confirmar(id){
     await axios.delete(urlUsuarios + "/" + id );
+    getUsuarios();
   };
 
   return (
