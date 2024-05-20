@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 Link   //Modificacion
 import "./Login.css";
 import Swal from "sweetalert2";
-let urlUsuarios = "http://localhost:3010/user";   //Modificacion;  -- SE AGREGEGO AQUI
+let urlUsuarios = "http://localhost:3010/users";   //Modificacion;  -- SE AGREGEGO AQUI
 import axios from "axios";    //Modificacion;  -- SE AGREGEGO AQUI
 
 const Login = () => {

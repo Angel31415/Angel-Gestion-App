@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 import Swal from "sweetalert2";
-let urlUsuarios = "http://localhost:3010/user"
+let urlUsuarios = "http://localhost:3010/users"
 
 const Registro = () => {
   const [getUsuario, setUsuario] = useState("");

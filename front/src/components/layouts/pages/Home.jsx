@@ -1,7 +1,7 @@
 import Header from "../../helpers/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
-let urlUsuarios = "http://localhost:3010/user"
+let urlUsuarios = "http://localhost:3010/users"
 
 const Home = () => {
   const [usuarios,setUsuarios] = useState([])  
@@ -15,6 +15,9 @@ const Home = () => {
   }, []);
 
   
+  function eliminarUsuario(id) {
+    console.log(id);
+  }
   return (
     <div>
         <Header />
@@ -26,7 +29,7 @@ const Home = () => {
               <p>ID: {usuario.id}</p>  
               <section>
                 <button>Editar</button>
-                <button onClick={() => eliminarUsuario()} >Eliminar</button>
+                <button onClick={() => eliminarUsuario(usuario.id)} >Eliminar</button>
               </section>
             </section>
           ))}
