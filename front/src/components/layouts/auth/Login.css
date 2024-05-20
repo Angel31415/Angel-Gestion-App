@@ -39,17 +39,6 @@
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 10px;
-}
-.btn-cancelar {
-  background-color: rgb(219, 46, 46);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 10px;
 }
 
 .btn:hover {

@@ -2,30 +2,12 @@
   "user": [
     {
       "user": "admin",
-      "contrasena": "1234",
-      "id": "jefe1"
-    },
-    {
-      "user": "jaime",
-      "contrasena": "1234",
-      "id": "user2"
-    },
-    {
-      "id": "c0n1",
-      "user": "hacker",
       "contrasena": "1234"
     },
     {
-      "id": "v12A",
-      "user": "visitante",
-      "contrasena": "6987"
-    },
-    {
-      "id": "a0fe",
-      "user": "carlos",
-      "contrasena": "98766",
-      "correo": "ppp@gmail.com"
+      "user": "jaime",
+      "contrasena": "1234"
     }
   ],
-  "productos": []
+  "productos":[]
 }

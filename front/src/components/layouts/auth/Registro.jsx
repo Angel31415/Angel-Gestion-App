@@ -1,56 +1,61 @@
-import { useState } from "react";
-import { usuarios } from "../../database/dataBase.jsx";
+import { useEffect, useState } from "react";
+//import { usuarios } from "../../database/dataBase.jsx";  //Modificacion  -- ELIMINAMOS LA NECECIDAD DE GENERAR UNA BUSQUEDA EN EL REGISTRO 
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Login.css";
-import axios from "axios"
-let urlUsuarios = 'http://localhost:3000/user' //direccion de la api a consultar 
-
-//dependencia axios: terminal:: cd front; npm i axios 
+import Swal from "sweetalert2";
+let urlUsuarios = "http://localhost:3000/user";
 
 const Registro = () => {
   const [getUsuario, setUsuario] = useState("");
-  const [getCorreo, setCorreo] = useState("")
   const [getContrasena, setContrasena] = useState("");
-  const [usuarios,setUsuarioS]= useState([]);
+  const [getCorreo, setCorreo] = useState("");
+  const [usuarios, setUsuarios] = useState([]); //Modificacion; ARREGLO VACIO -
   const redireccion = useNavigate();
-  
-  async function getUsuarios(){  //creado con aplicativo asyn
+
+  async function getUsuarios() {  //Modificacion; COMPLEMENTO 2
     let resultado = await axios.get(urlUsuarios);
-    setUsuarioS(resultado.data)
+    console.log(resultado.data);
+    setUsuarios(resultado.data);
   }
-  getUsuarios();
+
+  useEffect(() => {
+    getUsuarios(); //Modificacion; COMPLEMENTO 1
+  }, []);
 
   function buscarUsuario() {
     return usuarios.some((usuario) => usuario.user === getUsuario);
   }
 
   async function agregarUsuario() {
+    //Modificacion; funcion con la cual se crea y busca la existencia del usuasArio desde la BD, No local - BUSCADO ; COMPLEMENTO 0
     let usuario = {
-        user: getUsuario,
-        contrasena: getContrasena,
-        correo:getCorreo,
+      user: getUsuario,
+      contrasena: getContrasena,
+      correo: getCorreo,
     };
-    await axios.post(urlUsuarios,usuario);     //usuarios.push(usuario);
+    await axios.post(usuario);
   }
-  const registrarUsuario = () => {//Comprobante de existencia de usuarios 
-    if(buscarUsuario()){
-        console.log("Usuario ya existente en la base de datos ")
-    }else{
-        agregarUsuario();
-        alert("Usuario Creado con Exito")
-        console.log(usuarios);
-        redireccion("/")
+
+  const registrarUsuario = () => {
+    //Modificacion; Agregamos una alerta importada ("En la terminal del front : npm i sweetalert2")
+    if (buscarUsuario()) {
+      Swal.fire({
+        title: "ERROR",
+        text: "Usuario ya existe en la Base de Datos",
+        icon: "error",
+      });
+    } else {
+      agregarUsuario();
+      console.log(usuarios);
+      redireccion("/");
     }
   };
 
-  function cancelar(){//Retorno al home 
-    redireccion("/");
-  }
- 
   return (
     <form>
       <div className="container fadeInAnimation">
-        <h2>Registro</h2>
+        <h2>Iniciar Sesión</h2>
         <div className="input-group">
           <label htmlFor="username">Usuario:</label>
           <input
@@ -58,16 +63,6 @@ const Registro = () => {
             id="username"
             onChange={(e) => {
               setUsuario(e.target.value);
-            }}
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="email">Correo:</label>
-          <input
-            type="email"
-            id="email"
-            onChange={(e) => {
-              setCorreo(e.target.value);
             }}
           />
         </div>
@@ -81,20 +76,31 @@ const Registro = () => {
             }}
           />
         </div>
+        <div className="input-group">
+          <label htmlFor="email">Correo:</label>
+          <input
+            type="email"
+            id="email"
+            onChange={(e) => {
+              setCorreo(e.target.value);
+            }}
+          />
+        </div>
         <section className="botones">
           <button onClick={registrarUsuario} type="button" className="btn">
-            Crear Usuario
+            Crear Cuenta
           </button>
         </section>
-
-        <section className="botones">
-          <button onClick={cancelar} type="button" className="btn-cancelar">
-            Cancelar
-          </button>
-        </section>
-
       </div>
     </form>
   );
 };
 export default Registro;
+
+
+
+/// Servidor -- POST, GET 
+// local -- PUSH (filter, map, find, some)
+//  Cantidad de componentes, funcionamientos, interfaz, estilos , manejo de dependencias(react, router, dom, JSON-SERVER)
+//
+//

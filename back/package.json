@@ -1,11 +1,11 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "description": "Proyecto sencillo construido en jason-server para el consumo de informacion de un front con react",
+  "description": "Proyecto sencillo construido en json-server para el consumo de información en un front con react",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "json":"json-server index.json"
+    "json": "json-server index.json"
   },
   "keywords": [
     "Node",
@@ -13,9 +13,10 @@
     "React",
     "json-server",
     "JavaScript",
-    "API"
+    "API",
+    "servidor"
   ],
-  "author": "Angel Rodriguez",
+  "author": "Jaime Zapata Valencia",
   "license": "ISC",
   "dependencies": {
     "json-server": "^1.0.0-alpha.23"

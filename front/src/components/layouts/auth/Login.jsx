@@ -1,28 +1,51 @@
-import { useState } from "react";
-import { usuarios } from "../../database/dataBase.jsx";
-import { useNavigate } from "react-router-dom";
+//import { useState } from "react"; -- ELIMINAMOS LA DOBLE BUSQUEDA DE LOS USUARIOS 
+// import { usuarios } from "../../database/dataBase.jsx";
+import { useEffect, useState } from "react"; //Modificacion; -- SE AGREGEGO AQUI,  AGREGAMOS LOS EFECTOS 
+import { Link, useNavigate } from "react-router-dom";
+Link   //Modificacion
 import "./Login.css";
-import Registro from "./Registro.jsx";
+import Swal from "sweetalert2";
+let urlUsuarios = "http://localhost:3000/user";   //Modificacion;  -- SE AGREGEGO AQUI
+import axios from "axios";    //Modificacion;  -- SE AGREGEGO AQUI
 
 const Login = () => {
   const [getUsuario, setUsuario] = useState("");
   const [getContrasena, setContrasena] = useState("");
+  const [usuarios,setUsuarios] = useState([])   //Modificacion;  -- SE AGREGEGO AQUI
   const redireccion = useNavigate();
+
+  async function getUsuarios() {   //Modificacion; COMPLEMENTO "2"  -- SE AGREGEGO AQUI
+    let resultado = await axios.get(urlUsuarios);
+    console.log(resultado.data);
+    setUsuarios(resultado.data);
+  }
 
   function validarInicioSesion() {
     if (buscarUsuario()) {
-      console.log("Inicio de sesión correcta");
+      Swal.fire({
+        title: "Bienvenido",
+        text: "Acesso al sistema, Será redireccionado",
+        icon: "success",
+      });
       redireccion("/home");
     } else {
-      console.log("Error de credenciales");
+      Swal.fire({
+        title: "ERROR",
+        text: "Usuario y/o Contraseña incorrecta",
+        icon: "error",
+      });
     }
   }
+
+  useEffect(() =>{getUsuarios();  //Modificacion; COMPLEMENTO "1"  -- SE AGREGEGO AQUI
+  }, []);
+
+
   function buscarUsuario() {
-    return usuarios.some((usuario) =>
-     usuario.user === getUsuario && usuario.contrasena === getContrasena);
-  }
-  function GoRegistro(){
-    redireccion("/registro")
+    return usuarios.some(
+      (usuario) =>
+        usuario.user === getUsuario && usuario.contrasena === getContrasena
+    );
   }
   return (
     <form>
@@ -46,23 +69,19 @@ const Login = () => {
             onChange={(e) => {
               setContrasena(e.target.value);
             }}
-          />
-        </div>
-
+          /> 
+        </div>  
         <section className="botones">
           <button onClick={validarInicioSesion} type="button" className="btn">
             Iniciar Sesión
           </button>
+            
+          <Link  to="/registro" type="button" className="btn"   >   
+            Crear Cuenta  
+          </Link> 
         </section>
-
-        <section className="botones">
-          <button onClick={GoRegistro} type="button" className="btn">
-            Registro
-          </button>
-        </section>
-
-      </div>
+        </div>
     </form>
   );
-};
+}; //Modificacion  
 export default Login;
