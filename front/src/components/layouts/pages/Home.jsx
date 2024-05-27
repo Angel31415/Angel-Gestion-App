@@ -1,11 +1,14 @@
-import Header from "../../helpers/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import Header from "../../helpers/Header";
+import './Home.css'
+import { Link } from "react-router-dom";
 let urlUsuarios = "http://localhost:3010/users"
 
 const Home = () => {
-  const [usuarios,setUsuarios] = useState([])  
+
+  const [usuarios,setUsuarios] = useState([]);  
   const getUsuarios = async () => {
     let resultado = await axios.get(urlUsuarios);
       setUsuarios(resultado.data)
@@ -15,7 +18,6 @@ const Home = () => {
     getUsuarios();
   }, []);
 
-  
   function eliminarUsuario(id, user) {
     Swal.fire({
       title: "Estas Seguro de que desea eliminar el Usuario? " + user,
@@ -43,17 +45,23 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="home">
         <Header />
-        <section>
+        <section className="usuarios" >
           {usuarios.map((usuario)=> (
-            <section key = {usuario.id}>
+            <section className="card" key = {usuario.id}>
               <p>Usuario: {usuario.user}</p>
               <input defaultValue = {usuario.contrasena} type="text" />
               <p>ID: {usuario.id}</p>  
               <section>
-                <button>Editar</button>
-                <button onClick={() => eliminarUsuario(usuario.id)} >Eliminar</button>
+              <button >
+                <Link to={"/editar/" + usuario.id }>
+                  Editar
+                </Link>
+              </button>
+                <button onClick={() => eliminarUsuario(usuario.id)} >
+                  Eliminar
+                  </button>
               </section>
             </section>
           ))}

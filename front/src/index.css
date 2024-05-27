@@ -7,3 +7,10 @@ body {
   margin: 0;
   background-color: #f1f1f1;
 }
+
+form{
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
+
