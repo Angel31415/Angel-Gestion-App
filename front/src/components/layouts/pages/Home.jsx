@@ -49,7 +49,7 @@ const Home = () => {
         <Header />
         <section className="usuarios" >
           {usuarios.map((usuario)=> (
-            <section className="card" key = {usuario.id}>
+            <section className="card"key = {usuario.id}>
               <p>Usuario: {usuario.user}</p>
               <input defaultValue = {usuario.contrasena} type="text" />
               <p>ID: {usuario.id}</p>  
