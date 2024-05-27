@@ -4,6 +4,27 @@
       "user": "jaime",
       "contrasena": "1234",
       "id": "cfa0"
+    },{
+      "user": "admin",
+      "contrasena": "1234",
+      "id": "1cd3"
+    },
+    {
+      "user": "Angel",
+      "contrasena": "1234",
+      "id": "24ef"
+    },
+    {
+      "id": "7ebd",
+      "user": "admin-dos",
+      "contrasena": "1234",
+      "correo": "correo@correo.com"
+    },
+    {
+      "id": "7413",
+      "user": "super-admin",
+      "contrasena": "1234",
+      "correo": "correo@correo.com"
     }
   ],
   "productos": []
